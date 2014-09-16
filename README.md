@@ -1,6 +1,6 @@
 JavaScriptGarden
 ================
-
+![book logo](http://www.pptok.com/wp-content/uploads/2013/01/garden.jpg)
 JavaScriptGarden
 
 ##对象
@@ -23,15 +23,19 @@ Foo.bar; //1
 有很多变通方法可以让数字的字面值看起来像对象：
 
 
-对象作为数据类型
+**对象作为数据类型**
 Javascript的对象可以作为哈希表使用，主要用来保存命名的键与值的对应关系。
 使用对象的字面语法{} 可以创建一个简单的对象。这个新创建的对象从Object.prototype继承下面。没有任何自定义属性。
+
+```javascript
 var foo = {} //一个 空对象
 //一个新对象，拥有一个值为12的自定义属性'test'
 var bar = {test:12};
+```
 
-访问属性
+**访问属性**
 有两种方式来访问对象的属性，点操作符或者中括号操作符。
+```javascript
 var foo = {name:'kitten'};
 foo.name;//kitten
 foo['name'];//kitten
@@ -41,14 +45,16 @@ foo[get]; //kitten
 
 foo.1234;//SyntaxError
 foo['1234'] //works
+```
 
 两种语法是等价的，但是中括号操作符在下面两种情况下依然有效：
 动态设置属性
 属性名不是一个有效的变量名(译者注：比如一个属性名中包含空格、或者属性名是JS关键字)
 
-删除属性
+**删除属性**
 删除属性的唯一方法是使用delete操作符；设置属性为undefined或者null并不能真正的删除属性，而仅仅是移除了属性与值的关联。
 
+```javascript
 var obj = {
     bar:1,
     foo:2,
@@ -63,12 +69,15 @@ for(var i in obj){
         console.log(i, '' +obj[i]);
     }
 }
+```
 上面的输出结果有 bar undefined 和foo null 只有baz被真正删除了，所以从输出结果中消失。
 属性名的语法
+```javascript
 var test = {
     'case':'I am a keyword so I must be notated as a string ',
     delete:'I am a keyword to so me' //SyntaxError
 }
+```
 
 对象的属性名可以使用字符串或者普通字符声明。但是由于JavaScript解析器的另外一个错误设计，上面的第二种声明方式在ECMAScript5之前会抛出SyntaxError的错误。
 这个错误的运营是delete 是JavaScript语言的一个关键字，因此为了在更低版本中也能正常运行，必须使用字符串面值声明方式。
