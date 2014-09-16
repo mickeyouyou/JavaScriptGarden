@@ -1,10 +1,12 @@
 JavaScriptGarden
 ================
 ![book logo](http://www.pptok.com/wp-content/uploads/2013/01/garden.jpg)
+
 JavaScriptGarden
 
 ##对象
 **对象使用和属性**
+
 javascript中所有变量都是对象，除了两个例外null 和undefined
 ```javascript
 false.toString();//false
@@ -24,6 +26,7 @@ Foo.bar; //1
 
 
 **对象作为数据类型**
+
 Javascript的对象可以作为哈希表使用，主要用来保存命名的键与值的对应关系。
 使用对象的字面语法{} 可以创建一个简单的对象。这个新创建的对象从Object.prototype继承下面。没有任何自定义属性。
 
@@ -34,6 +37,7 @@ var bar = {test:12};
 ```
 
 **访问属性**
+
 有两种方式来访问对象的属性，点操作符或者中括号操作符。
 ```javascript
 var foo = {name:'kitten'};
