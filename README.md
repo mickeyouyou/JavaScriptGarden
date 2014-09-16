@@ -2,7 +2,7 @@ JavaScriptGarden
 ================
 ![book logo](http://www.pptok.com/wp-content/uploads/2013/01/garden.jpg)
 
-JavaScriptGarden
+JavaScriptGarden  你不知道的JavaScript在一个秘密花园里 
 
 #对象
 **对象使用和属性**
@@ -56,6 +56,7 @@ foo['1234'] //works
 属性名不是一个有效的变量名(译者注：比如一个属性名中包含空格、或者属性名是JS关键字)
 
 **删除属性**
+
 删除属性的唯一方法是使用delete操作符；设置属性为undefined或者null并不能真正的删除属性，而仅仅是移除了属性与值的关联。
 
 ```javascript
@@ -185,9 +186,58 @@ this;
 foo();
 ```
 这里this也会指向全局对象。
+>ES5注意：在严格模式下（strict mode），不存在全局变量。这种情况下this将会是undefined。
+
 **方法调用**
 
 ```
 test.foo();
 ```
 这个例子中，this指向test对象。
+
+**调用构造函数**
+```
+new foo();
+```
+
+如果函数倾向于和new 关键字一起使用，则我们成这个函数为构造函数。在函数内部，this指向一个新创建的对象。
+
+**显式设置的this**
+```javascript
+function foo (a,b,c) {}
+
+var bar = {};
+foo.apply(bar,[1,2,3]); //数组将会扩展如下
+foo.call(bar,1,2,3);//结果 a=1,b= 2,c=3 
+```
+
+
+
+
+#核心
+
+##为什么不用`eval`
+`eval` 函数会在当前作用域中执行一段 JavaScript 代码字符串。
+```javascript
+var foo = 1;
+function test() {
+    var foo = 2;
+    eval('foo = 3');
+    return foo;
+}
+test(); // 3
+foo; // 1
+```
+但是 `eval` 只在被直接调用并且调用函数就是 `eval` 本身时，才在当前作用域中执行。
+
+```javascript
+var foo = 1;
+function test() {
+    var foo = 2;
+    var bar = eval;
+    bar('foo = 3');
+    return foo;
+}
+test(); // 2
+foo; // 3
+```
