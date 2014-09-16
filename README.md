@@ -241,3 +241,28 @@ function test() {
 test(); // 2
 foo; // 3
 ```
+
+译者注：上面的代码等价于在全局作用域中调用 eval，和下面两种写法效果一样：
+```javascript
+// 写法一：直接调用全局作用域下的 foo 变量
+var foo = 1;
+function test() {
+    var foo = 2;
+    window.foo = 3;
+    return foo;
+}
+test(); // 2
+foo; // 3
+
+// 写法二：使用 call 函数修改 eval 执行的上下文为全局作用域
+var foo = 1;
+function test() {
+    var foo = 2;
+    eval.call(window, 'foo = 3');
+    return foo;
+}
+test(); // 2
+foo; // 3
+```
+
+在任何情况下我们都应该避免使用 `eval` 函数。99.9% 使用 `eval` 的场景都有不使用 `eval` 的解决方案。
