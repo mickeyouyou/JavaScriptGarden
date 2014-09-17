@@ -23,12 +23,16 @@ Foo.bar; //1
 ```
 
 有很多变通方法可以让数字的字面值看起来像对象：
-
+```javascript
+2..toString(); // 第二个点号可以正常解析
+2 .toString(); // 注意点号前面的空格
+(2).toString(); // 2先被计算
+```	
 
 **对象作为数据类型**
 
 Javascript的对象可以作为`哈希表`使用，主要用来保存命名的键与值的对应关系。
-使用对象的字面语法{} 可以创建一个简单的对象。这个新创建的对象从Object.prototype继承下面。没有任何自定义属性。
+使用对象的字面语法{} 可以创建一个简单的对象。这个新创建的对象从`Object.prototype`继承下面。没有任何自定义属性。
 
 ```javascript
 var foo = {} //一个 空对象
@@ -57,7 +61,7 @@ foo['1234'] //works
 
 **删除属性**
 
-删除属性的唯一方法是使用delete操作符；设置属性为undefined或者null并不能真正的删除属性，而仅仅是移除了属性与值的关联。
+删除属性的唯一方法是使用`delete`操作符；设置属性为`undefined`或者`null`并不能真正的删除属性，而仅仅是移除了属性与值的关联。
 
 ```javascript
 var obj = {
@@ -75,7 +79,7 @@ for(var i in obj){
     }
 }
 ```
-上面的输出结果有 bar undefined 和foo null 只有baz被真正删除了，所以从输出结果中消失。
+上面的输出结果有 `bar undefined `和`foo null` 只有`baz`被真正删除了，所以从输出结果中消失。
 属性名的语法
 ```javascript
 var test = {
@@ -88,7 +92,7 @@ var test = {
 这个错误的运营是delete 是JavaScript语言的一个关键字，因此为了在更低版本中也能正常运行，必须使用字符串面值声明方式。
 
 ##原型
-JavaScript不包含传统的类继承模型，而是使用prototypal原型模型。
+JavaScript不包含传统的类继承模型，而是使用`prototypal`原型模型。
 
 虽然这经常被当做是JavaScript的缺点被提及，其实基于原型的继承模型比传统的类继承还要强大。实现传统的类继承模型是很简单，但是实现JavaScript中的原型继承则要困难的多。
 
