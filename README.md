@@ -852,8 +852,10 @@ test();
 if (!SomeImportantThing) {
     var SomeImportantThing = {};
 }
-实际上，上面的代码正常运行，因为 var 表达式会被提升到全局作用域的顶部。
 ```
+实际上，上面的代码正常运行，因为 var 表达式会被提升到全局作用域的顶部。
+
+```javascript
 var SomeImportantThing;
 
 // 其它一些代码，可能会初始化 SomeImportantThing，也可能不会
@@ -866,9 +868,9 @@ if (!SomeImportantThing) {
 
 >译者注：在 Nettuts+ 网站有一篇介绍 hoisting 的文章，其中的代码很有启发性。
 
->// 译者注：来自 Nettuts+ 的一段代码，生动的阐述了 JavaScript 中变量声明提升规则
 
 ```javascript
+// 译者注：来自 Nettuts+ 的一段代码，生动的阐述了 JavaScript 中变量声明提升规则
 var myvar = 'my value';  
 
 (function() {  
@@ -876,6 +878,7 @@ var myvar = 'my value';
     var myvar = 'local value';  
 })();  
 ```
+
 **名称解析顺序**
 
 JavaScript 中的所有作用域，包括全局作用域，都有一个特别的名称 this 指向当前对象。
@@ -888,11 +891,12 @@ JavaScript 中的所有作用域，包括全局作用域，都有一个特别的
 *函数形式参数是否有使用 foo 名称的。
 *函数自身是否叫做 foo。
 *回溯到上一级作用域，然后从 #1 重新开始。
->注意: 自定义 arguments 参数将会阻止原生的 arguments 对象的创建。
+>注意: 自定义 `arguments` 参数将会阻止原生的 `arguments` 对象的创建。
 
 **命名空间**
 
 只有一个全局作用域导致的常见错误是命名冲突。在 JavaScript中，这可以通过 匿名包装器 轻松解决。
+
 ```javascript
 (function() {
     // 函数创建一个命名空间
@@ -903,14 +907,17 @@ JavaScript 中的所有作用域，包括全局作用域，都有一个特别的
 
 })(); // 立即执行此匿名函数
 ```
+
 匿名函数被认为是 表达式；因此为了可调用性，它们首先会被执行。
-```
+```javascript 
 ( // 小括号内的函数首先被执行
 function() {}
 ) // 并且返回函数对象
 () // 调用上面的执行结果，也就是函数对象
 ```
+
 有一些其他的调用函数表达式的方法，比如下面的两种方式语法不同，但是效果一模一样。
+
 ```javascript
 // 另外两种方式
 +function(){}();
@@ -1015,7 +1022,7 @@ new Array(count + 1).join(stringToRepeat);
 
 JavaScript 有两种方式判断两个值是否相等。
 
-等于操作符
+**等于操作符**
 
 等于操作符由两个等号组成：`==`
 
@@ -1031,7 +1038,7 @@ false        ==   null          // false
 null         ==   undefined     // true
 " \t\r\n"    ==   0             // true
 ```
-上面的表格展示了强制类型转换，这也是使用 == 被广泛认为是不好编程习惯的主要原因， 由于它的复杂转换规则，会导致难以跟踪的问题。
+上面的表格展示了强制类型转换，这也是使用`==`被广泛认为是不好编程习惯的主要原因， 由于它的复杂转换规则，会导致难以跟踪的问题。
 
 此外，强制类型转换也会带来性能消耗，比如一个字符串为了和一个数字进行比较，必须事先被强制转换为数字。
 
@@ -1076,7 +1083,7 @@ foo === foo;                 // true
 
 尽管 `instanceof` 还有一些极少数的应用场景，`typeof` 只有一个实际的应用（译者注：这个实际应用是用来检测一个对象是否已经定义或者是否已经赋值）， 而这个应用却不是用来检查对象的类型。
 
->注意: 由于 `typeof` 也可以像函数的语法被调用，比如 `typeof(obj)`，但这并是一个函数调用。 那两个小括号只是用来计算一个表达式的值，这个返回值会作为 `typeof` 操作符的一个操作数。 实际上不存在名为 `typeof` 的函数。
+>注意: 由于 `typeof` 也可以像函数的语法被调用，比如 `typeof(obj)`，但这并不是一个函数调用。 那两个小括号只是用来计算一个表达式的值，这个返回值会作为 `typeof` 操作符的一个操作数。 实际上不存在名为 `typeof` 的函数。
 
 **JavaScript 类型表格**
 ```javascript
@@ -1107,7 +1114,8 @@ Class 一列表示对象的内部属性 [[Class]] 的值。
 为了获取对象的 [[Class]]，我们需要使用定义在 Object.prototype 上的方法 toString。
 
 **对象的类定义**
-JavaScript 标准文档只给出了一种获取 [[Class]] 值的方法，那就是使用 Object.prototype.toString。
+
+JavaScript 标准文档只给出了一种获取 `[[Class]]` 值的方法，那就是使用`Object.prototype.toString`。
 
 ```javascript
 function is(type, obj) {
@@ -1118,9 +1126,9 @@ function is(type, obj) {
 is('String', 'test'); // true
 is('String', new String('test')); // true
 ```
-上面例子中，Object.prototype.toString 方法被调用，this 被设置为了需要获取 [[Class]] 值的对象。
+上面例子中，`Object.prototype.toString`方法被调用，`this` 被设置为了需要获取 `[[Class]]` 值的对象。
 
-译者注：Object.prototype.toString 返回一种标准格式字符串，所以上例可以通过 slice 截取指定位置的字符串，如下所示：
+译者注：`Object.prototype.toString` 返回一种标准格式字符串，所以上例可以通过 `slice` 截取指定位置的字符串，如下所示：
 ```
 Object.prototype.toString.call([])    // "[object Array]"
 Object.prototype.toString.call({})    // "[object Object]"
@@ -1141,7 +1149,7 @@ Object.prototype.toString.call(undefined)    // "[object Undefined]"
 ```
 **测试为定义变量**
 
-```
+```javascript
 typeof foo !== 'undefined'
 ```
 上面代码会检测 foo 是否已经定义；如果没有定义而直接使用会导致 ReferenceError 的异常。 这是 typeof 唯一有用的地方。
@@ -1157,7 +1165,7 @@ typeof foo !== 'undefined'
 instanceof 操作符用来比较两个操作数的构造函数。只有在比较自定义的对象时才有意义。 如果用来比较内置类型，将会和 typeof 操作符 一样用处不大。
 
 **比较自定义对象**
-```
+```javascript
 function Foo() {}
 function Bar() {}
 Bar.prototype = new Foo();
@@ -1172,7 +1180,7 @@ new Bar() instanceof Foo; // false
 
 **`instanceof` 比较内置类型**
 
-```
+```javascript
 new String('foo') instanceof String; // true
 new String('foo') instanceof Object; // true
 
@@ -1209,7 +1217,7 @@ isNaN(null) == false; // null 被转换为数字 0
 
 内置类型（比如 Number 和 String）的构造函数在被调用时，使用或者不使用 new 的结果完全不同。
 
-```
+```javascript
 new Number(10) === 10;     // False, 对象与数字的比较
 Number(10) === 10;         // True, 数字与数字的比较
 new Number(10) + 0 === 10; // True, 由于隐式的类型转换
@@ -1221,19 +1229,19 @@ new Number(10) + 0 === 10; // True, 由于隐式的类型转换
 最好的选择是把要比较的值显式的转换为三种可能的类型之一。
 
 **转换为字符串**
-```
+```javascript
 '' + 10 === '10'; // true
 ```
 将一个值加上空字符串可以轻松转换为字符串类型。
 
 **转换为数字**
-```
+```javascript
 +'10' === 10; // true
 ```
 使用一元的加号操作符，可以把字符串转换为数字。
 
 译者注：字符串转换为数字的常用方法：
-```
+```javascript
 +'010' === 10
 Number('010') === 10
 parseInt('010', 10) === 10  // 用来转换为整数
@@ -1245,7 +1253,7 @@ parseInt('010.2', 10) === 10
 **转换为布尔型**
 
 通过使用 否 操作符两次，可以把一个值转换为布尔型。
-```
+```javascript
 !!'foo';   // true
 !!'';      // false
 !!'0';     // true
