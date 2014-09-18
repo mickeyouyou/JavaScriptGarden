@@ -3,6 +3,8 @@ JavaScriptGarden
 ![book logo](http://www.pptok.com/wp-content/uploads/2013/01/garden.jpg)
 
 
+[TOC]
+
 #简介
 
 JavaScriptGarden收集越来越多关于JavaScript编程语言的最古怪的地方的文档。建议避免常见的错误和微妙的错误，以及性能问题和不良做法，即非专业JavaScript程序员可能需要用自己的努力挖掘到语言深处。
@@ -175,11 +177,10 @@ Foo.prototype = 1; // 无效
 
 扩展内置类型的唯一理由是为了和新的 JavaScript 保持一致，比如 Array.forEach。
 
->译者注：这是编程领域常用的一种方式，称之为 Backport，也就是将新的补丁添加到老版本中。
-
 **总结**
 
 在写复杂的 JavaScript 应用之前，充分理解原型链继承的工作方式是每个 JavaScript 程序员必修的功课。 要提防原型链过长带来的性能问题，并知道如何通过缩短原型链来提高性能。 更进一步，绝对不要扩展内置类型的原型，除非是为了和新的 JavaScript 引擎兼容。
+
 
 ##`hasOwnProperty`函数
 
