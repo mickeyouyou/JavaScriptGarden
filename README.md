@@ -1,17 +1,22 @@
-JavaScriptSecretGarden
+JavaScriptGarden
 ================
 ![book logo](http://www.pptok.com/wp-content/uploads/2013/01/garden.jpg)
 
-JavaScriptGarden  你不知道的JavaScript在一个秘密花园里 
 
 #简介
 
 JavaScriptGarden收集越来越多关于JavaScript编程语言的最古怪的地方的文档。建议避免常见的错误和微妙的错误，以及性能问题和不良做法，即非专业JavaScript程序员可能会需要用自己的努力去挖掘到语言深处。
 
-JavaScriptGarden的目的并不是要教你JavaScript。语言知识前强烈建议，以了解在本指南中的主题。为了学习语言的基础知识，请移步Mozilla开发者网络优秀指南。
+JavaScriptGarden的目的并不是要教你JavaScript。语言知识前强烈建议，以了解在本指南中的主题。为了学习语言的基础知识，请移步[Mozilla开发者网络优秀指南](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Guide)。
+
+此项目是对JavaScriptGarden 中文翻译的其中一个版本，其他版本有不同之处，如有错误，欢迎issue。
+项目地址：[https://github.com/BonsaiDen/JavaScript-Garden](https://github.com/BonsaiDen/JavaScript-Garden)
+#作者
+这篇文章的作者是两位 `Stack Overflow` 用户, `伊沃·韦特泽尔 Ivo Wetzel`（写作） 和 `张易江 Zhang Yi Jiang（设计）`。
+
 
 #对象
-**对象使用和属性**
+**对象使用和属性** 
 
 javascript中所有变量都是对象，除了两个例外`null`和`undefined`
 ```javascript
@@ -1555,7 +1560,7 @@ for(var i = 1; i < 1000; i++) {
 
 **隐藏使用 `eval`**
 
-`setTimeout` 和 setInterval 也接受第一个参数为字符串的情况。 这个特性绝对不要使用，因为它在内部使用了 eval。
+`setTimeout` 和 `setInterval` 也接受第一个参数为字符串的情况。 这个特性绝对不要使用，因为它在内部使用了 eval。
 
 >注意: 由于定时器函数不是 ECMAScript 的标准，如何解析字符串参数在不同的 JavaScript 引擎实现中可能不同。 事实上，微软的 JScript 会使用 Function 构造函数来代替 eval 的使用。
 
@@ -1573,7 +1578,7 @@ function bar() {
 bar();
 ```
 
-由于 eval 在这种情况下不是被直接调用，因此传递到 `setTimeout` 的字符串会自全局作用域中执行； 因此，上面的回调函数使用的不是定义在 bar 作用域中的局部变量 foo。
+由于 `eval` 在这种情况下不是被直接调用，因此传递到 `setTimeout` 的字符串会自全局作用域中执行； 因此，上面的回调函数使用的不是定义在 `bar` 作用域中的局部变量 `foo`。
 
 建议不要在调用定时器函数时，为了向回调函数传递参数而使用字符串的形式。
 
@@ -1588,7 +1593,7 @@ setTimeout(function() {
     foo(a, b, c);
 }, 1000)
 ```
->注意: 虽然也可以使用这样的语法 setTimeout(foo, 1000, a, b, c)， 但是不推荐这么做，因为在使用对象的属性方法时可能会出错。 （译者注：这里说的是属性方法内，this 的指向错误）
+>注意: 虽然也可以使用这样的语法 `setTimeout(foo, 1000, a, b, c)`， 但是不推荐这么做，因为在使用对象的属性方法时可能会出错。 （译者注：这里说的是属性方法内，this 的指向错误）
 结论
 
 绝对不要使用字符串作为 `setTimeout` 或者 `setInterval` 的第一个参数， 这么写的代码明显质量很差。当需要向回调函数传递参数时，可以创建一个匿名函数，在函数内执行真实的回调函数。
