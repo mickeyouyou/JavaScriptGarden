@@ -41,7 +41,7 @@ JavaScriptGarden
 
 JavaScriptGarden收集越来越多关于JavaScript编程语言的最古怪的地方的文档。建议避免常见的错误和微妙的错误，以及性能问题和不良做法，即非专业JavaScript程序员可能需要用自己的努力挖掘到语言深处。
 
-JavaScriptGarden的目的并不是要教你JavaScript。语言知识前强烈建议，以了解在本指南中的主题。为了学习语言的基础知识，请移步[Mozilla开发者网络优秀指南](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Guide)。
+JavaScriptGarden的目的并不是要教你JavaScript。语言知识前强烈建议，以了解在本指南中的主题。学习JavaScript的基础知识，请移步[Mozilla开发者网络优秀指南](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Guide)。
 
 此项目是对JavaScriptGarden 中文翻译的其中一个版本，其他版本有不同之处，如有错误，欢迎issue。
 项目地址：[https://github.com/BonsaiDen/JavaScript-Garden](https://github.com/BonsaiDen/JavaScript-Garden)
