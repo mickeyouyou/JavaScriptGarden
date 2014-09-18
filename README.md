@@ -1,11 +1,43 @@
 JavaScriptGarden
 ================
-![book logo](http://www.pptok.com/wp-content/uploads/2013/01/garden.jpg)
+![book logo]( http://www.pptok.com/wp-content/uploads/2013/01/garden.jpg)
+
+#目录
+<!-- MarkdownTOC -->
+
+- 简介
+- 对象
+	- 对象使用和属性
+	- 原型
+	- `hasOwnProperty`函数
+	- `for in `循环
+- 函数
+	- 函数的声明与表达式
+	- `this`的工作原理
+	- 闭包和引用
+	- `arguments` 对象
+	- 构造函数
+	- 作用域与命名空间
+- 数组
+	- 数组遍历与属性
+	- Array 构造函数
+- 类型
+	- 相等与比较
+	- `typeof` 操作符
+	- 类型转换
+- 核心
+	- 为什么不用`eval`
+	- `undefined`和`null`
+	- 自动分号插入
+	- delete操作符
+- 其他
+	- `setTimeout` 和 `setInterval`
+
+<!-- /MarkdownTOC -->
 
 
-[TOC]
 
-#简介
+# 简介
 
 JavaScriptGarden收集越来越多关于JavaScript编程语言的最古怪的地方的文档。建议避免常见的错误和微妙的错误，以及性能问题和不良做法，即非专业JavaScript程序员可能需要用自己的努力挖掘到语言深处。
 
@@ -13,12 +45,15 @@ JavaScriptGarden的目的并不是要教你JavaScript。语言知识前强烈建
 
 此项目是对JavaScriptGarden 中文翻译的其中一个版本，其他版本有不同之处，如有错误，欢迎issue。
 项目地址：[https://github.com/BonsaiDen/JavaScript-Garden](https://github.com/BonsaiDen/JavaScript-Garden)
-##英文作者
+
+**英文作者**
+
 这篇文章的作者是两位 `Stack Overflow` 用户, [`伊沃·韦特泽尔 Ivo Wetzel`](http://stackoverflow.com/users/170224/ivo-wetzel)（写作） 和 [`张易江 Zhang Yi Jiang`](http://stackoverflow.com/users/313758/yi-jiang)（设计）。
 
 
-#对象
-**对象使用和属性** 
+# 对象
+
+## 对象使用和属性 
 
 javascript中所有变量都是对象，除了两个例外`null`和`undefined`
 ```javascript
@@ -104,7 +139,7 @@ var test = {
 
 这个错误是因为`delete` 是JavaScript语言的一个关键字，因此为了在更低版本中也能正常运行，必须使用字符串面值声明方式。
 
-##原型
+## 原型
 JavaScript不具有传统的类继承模型的特征，而是使用`prototypal`原型模型。
 
 虽然这经常被当做是JavaScript的缺点被提及，其实基于原型的继承模型比传统的类继承还要强大。实现传统的类继承模型是很简单，但是实现JavaScript中的原型继承则要困难的多。
@@ -182,7 +217,7 @@ Foo.prototype = 1; // 无效
 在写复杂的 JavaScript 应用之前，充分理解原型链继承的工作方式是每个 JavaScript 程序员必修的功课。 要提防原型链过长带来的性能问题，并知道如何通过缩短原型链来提高性能。 更进一步，绝对不要扩展内置类型的原型，除非是为了和新的 JavaScript 引擎兼容。
 
 
-##`hasOwnProperty`函数
+## `hasOwnProperty`函数
 
 为了判断一个对象是否包含自定义属性而不是原型链上的属性， 我们需要使用继承自`Object.prototype`的`hasOwnProperty` 方法。
 
@@ -223,7 +258,7 @@ foo.hasOwnProperty('bar'); // 总是返回 false
 
 当检查对象上某个属性是否存在时，`hasOwnProperty`是唯一可用的方法。 同时在使用 for in loop 遍历对象时，推荐总是使用 hasOwnProperty 方法， 这将会避免原型对象扩展带来的干扰。
 
-##`for in `循环
+## `for in `循环
 
 和 in 操作符一样，for in 循环同样在查找对象属性时遍历原型链上的所有属性。
 
@@ -261,9 +296,9 @@ for(var i in foo) {
 
 推荐总是使用 `hasOwnProperty`。不要对代码运行的环境做任何假设，不要假设原生对象是否已经被扩展了。
 
-#函数
+# 函数
 
-##函数的声明与表达式
+## 函数的声明与表达式
 
 函数是javascript中的一等对象，这意味着可以函数像其他值一样传递。一个常见的用法是把匿名函数作为回调传递到异步函数中。
 
@@ -304,7 +339,7 @@ bar();//出错：ReferenceError
 
 bar 函数声明外是不可见的，这是因为我们已经把函数赋值给了foo；然而在bar内部依然可见。这是由于JavaScript的命名处理所致，函数名在函数内总是可见的。
 
-##`this`的工作原理
+## `this`的工作原理
 JavaScript 有一套完全不同于其它语言的对 this 的处理机制。 在五种不同的情况下 ，this 指向的各不相同。
 
 **全局范围内**
@@ -400,7 +435,7 @@ new Bar().method();
 ```
 当 method 被调用时，this 将会指向 Bar 的实例对象。
 
-##闭包和引用
+## 闭包和引用
 
 闭包是 JavaScript 一个非常重要的特性，这意味着当前作用域总是能够访问外部作用域中的变量。 因为 函数 是 JavaScript 中唯一拥有自身作用域的结构，因此闭包的创建依赖于函数。
 
@@ -481,7 +516,7 @@ for(var i = 0; i < 10; i++) {
     })(i), 1000)
 }
 ```
-##`arguments` 对象
+## `arguments` 对象
 
 JavaScript 中每个函数内都能访问一个特别变量 `arguments`。这个变量维护着所有传递到这个函数中的参数列表。
 
@@ -593,7 +628,7 @@ function bigLoop() {
 
 >ES5 提示: 在严格模式下，`arguments.callee` 会报错 `TypeError`，因为它已经被废除了。
 
-##构造函数
+## 构造函数
 
 JavaScript 中的构造函数和其它语言中的构造函数是不同的。 通过 new 关键字方式调用的函数都被认为是构造函数。
 
@@ -629,18 +664,7 @@ function Test() {
 }
 new Test(); // 返回的对象
 ```
-译者注：new Bar() 返回的是新创建的对象，而不是数字的字面值 2。 因此 new Bar().constructor === Bar，但是如果返回的是数字对象，结果就不同了，如下所示
-```javascript
-function Bar() {
-    return new Number(2);
-}
-new Bar().constructor === Number
 
->译者注：这里得到的 new Test()是函数返回的对象，而不是通过new关键字新创建的对象，因此：
-
-(new Test()).value === undefined
-(new Test()).foo === 1
-```
 如果 new 被遗漏了，则函数不会返回新创建的对象。
 ```
 function Foo() {
@@ -676,7 +700,7 @@ Bar();
 在上面的例子中，使用或者不使用 new 关键字没有功能性的区别。
 
 译者注：上面两种方式创建的对象不能访问 Bar 原型链上的属性，如下所示：
-```
+```javascript
 var bar1 = new Bar();
 typeof(bar1.method); // "function"
 typeof(bar1.foo); // "undefined"
@@ -691,7 +715,7 @@ typeof(bar2.foo); // "undefined"
 我们常听到的一条忠告是不要使用 new 关键字来调用函数，因为如果忘记使用它就会导致错误。
 
 为了创建新对象，我们可以创建一个工厂方法，并且在方法内构造一个新对象。
-```
+```javascript
 function Foo() {
     var obj = {};
     obj.value = 'blub';
@@ -716,10 +740,10 @@ function Foo() {
 
 虽然遗漏 new 关键字可能会导致问题，但这并不是放弃使用原型链的借口。 最终使用哪种方式取决于应用程序的需求，选择一种代码书写风格并坚持下去才是最重要的。
 
-**作用域与命名空间**
+## 作用域与命名空间
 
 尽管 JavaScript 支持一对花括号创建的代码段，但是并不支持块级作用域； 而仅仅支持 函数作用域。
-```
+```javascript
 function test() { // 一个作用域
     for(var i = 0; i < 10; i++) { // 不是一个作用域
         // count
@@ -730,7 +754,7 @@ function test() { // 一个作用域
 >注意: 如果不是在赋值语句中，而是在 return 表达式或者函数参数中，{...} 将会作为代码段解析， 而不是作为对象的字面语法解析。如果考虑到 自动分号插入，这可能会导致一些不易察觉的错误。
 
 译者注：如果 return 对象的左括号和 return 不在一行上就会出错。
-```
+```javascript
 // 译者注：下面输出 undefined
 function add(a, b) {
     return 
@@ -743,7 +767,7 @@ JavaScript 中没有显式的命名空间定义，这就意味着所有对象都
 每次引用一个变量，JavaScript 会向上遍历整个作用域直到找到这个变量为止。 如果到达全局作用域但是这个变量仍未找到，则会抛出 ReferenceError 异常。
 
 **隐式的全局变量**
-```
+```javascript
 // 脚本 A
 foo = '42';
 
@@ -753,7 +777,7 @@ var foo = '42'
 上面两段脚本效果不同。脚本 A 在全局作用域内定义了变量 foo，而脚本 B 在当前作用域内定义变量 foo。
 
 再次强调，上面的效果完全不同，不使用 var 声明变量将会导致隐式的全局变量产生。
-```
+```javascript
 // 全局作用域
 var foo = 42;
 function test() {
@@ -764,7 +788,7 @@ test();
 foo; // 21
 ```
 在函数 test 内不使用 var 关键字声明 foo 变量将会覆盖外部的同名变量。 起初这看起来并不是大问题，但是当有成千上万行代码时，不使用 var 声明变量将会带来难以跟踪的 BUG。
-```
+```javascript
 // 全局作用域
 var items = [/* 数组 */];
 for(var i = 0; i < 10; i++) {
@@ -783,7 +807,7 @@ function subLoop() {
 **局部变量**
 
 JavaScript 中局部变量只可能通过两种方式声明，一个是作为函数参数，另一个是通过 var 关键字声明。
-```
+```javascript
 // 全局变量
 var foo = 1;
 var bar = 2;
@@ -935,9 +959,9 @@ function() {}
 
 另外，使用全局变量被认为是不好的习惯。这样的代码倾向于产生错误和带来高的维护成本。
 
-#数组
+# 数组
 
-##数组遍历与属性
+## 数组遍历与属性
 
 虽然在 JavaScript 中数组是对象，但是没有好的理由去使用 for in 循环 遍历数组。 相反，有一些好的理由不去使用 for in 遍历数组。
 
@@ -983,7 +1007,7 @@ foo[5] = undefined;
 
 为了更好的性能，推荐使用普通的 for 循环并缓存数组的 length 属性。 使用 for in 遍历数组被认为是不好的代码习惯并倾向于产生错误和导致性能问题。
 
-##Array 构造函数
+## Array 构造函数
 
 由于 Array 的构造函数在如何处理参数时有点模棱两可，因此总是推荐使用数组的字面语法 - [] - 来创建数组。
 
@@ -1022,9 +1046,9 @@ new Array(count + 1).join(stringToRepeat);
 应该尽量避免使用数组构造函数创建新数组。推荐使用数组的字面语法。它们更加短小和简洁，因此增加了代码的可读性。
 
 
-#类型
+# 类型
 
-##相等与比较
+## 相等与比较
 
 JavaScript 有两种方式判断两个值是否相等。
 
@@ -1083,7 +1107,7 @@ foo === foo;                 // true
 
 强烈推荐使用严格等于操作符。如果类型需要转换，应该在比较之前显式的转换， 而不是使用语言本身复杂的强制转换规则。
 
-##`typeof` 操作符
+## `typeof` 操作符
 
 `typeof` 操作符（和 `instanceof` 一起）或许是 JavaScript 中最大的设计缺陷， 因为几乎不可能从它们那里得到想要的结果。
 
@@ -1166,7 +1190,7 @@ typeof foo !== 'undefined'
 
 除非为了检测一个变量是否已经定义，我们应尽量避免使用 typeof 操作符。
 
-**`instanceof` 操作符**
+** `instanceof` 操作符**
 
 instanceof 操作符用来比较两个操作数的构造函数。只有在比较自定义的对象时才有意义。 如果用来比较内置类型，将会和 typeof 操作符 一样用处不大。
 
@@ -1199,7 +1223,7 @@ new String('foo') instanceof Object; // true
 
 instanceof 操作符应该仅仅用来比较来自同一个 JavaScript 上下文的自定义对象。 正如 typeof 操作符一样，任何其它的用法都应该是避免的。
 
-##类型转换
+## 类型转换
 
 JavaScript 是弱类型语言，所以会在任何可能的情况下应用强制类型转换。
 ```javascript
@@ -1270,9 +1294,9 @@ parseInt('010.2', 10) === 10
 ```
 
 
-#核心
+# 核心
 
-##为什么不用`eval`
+## 为什么不用`eval`
 `eval` 函数会在当前作用域中执行一段 JavaScript 代码字符串。
 ```javascript
 var foo = 1;
@@ -1335,7 +1359,7 @@ eval 也存在安全问题，因为它会执行任意传给它的代码， 在�
 
 绝对不要使用 eval，任何使用它的代码都会在它的工作方式，性能和安全性方面受到质疑。 如果一些情况必须使用到 eval 才能正常工作，首先它的设计会受到质疑，这不应该是首选的解决方案， 一个更好的不使用 eval 的解决方案应该得到充分考虑并优先采用。
 
-`undefined`和`null`
+## `undefined`和`null`
 
 JavaScript有两个表示空的值，其中比较游泳的是undefined。
 
@@ -1382,7 +1406,7 @@ JavaScript 中的 `undefined` 的使用场景类似于其它语言中的 `null` 
 
 它在 JavaScript 内部有一些使用场景（比如声明原型链的终结 `Foo.prototype = null`，但是大多数情况下都可以使用 `undefined` 来代替。
 
-##自动分号插入
+## 自动分号插入
 
 尽管 JavaScript 有 C 的代码风格，但是它不强制要求在代码中使用分号，实际上可以省略它们。
 
@@ -1463,6 +1487,7 @@ test()
 ```
 
 >注意: JavaScript 不能正确的处理 return 表达式紧跟换行符的情况， 虽然这不能算是自动分号插入的错误，但这确实是一种不希望的副作用。
+
 解析器显著改变了上面代码的行为，在另外一些情况下也会做出错误的处理。
 
 **前置括号**
@@ -1483,9 +1508,81 @@ log 函数的执行结果极大可能不是函数；这种情况下就会出现 
 
 建议绝对不要省略分号，同时也提倡将花括号和相应的表达式放在一行， 对于只有一行代码的 if 或者 else 表达式，也不应该省略花括号。 这些良好的编程习惯不仅可以提到代码的一致性，而且可以防止解析器改变代码行为的错误处理。
 
-#其他
+## delete操作符
+总之，删除全局变量是不可能的，功能和一些其他的东西在JavaScript中有一个dontdelete属性集。
 
-##`setTimeout` 和 `setInterval`
+**全局代码和函数代码**
+当一个变量或函数是在全球或一个函数的范围是可以激活对象或全局对象的属性定义。这种性质的一组属性，其中之一是dontdelete。变量和函数在全球和功能的代码总是创建属性与dontdelete声明，因此不能被删除。
+```javascript
+// global variable:
+var a = 1; // DontDelete is set
+delete a; // false
+a; // 1
+
+// normal function:
+function f() {} // DontDelete is set
+delete f; // false
+typeof f; // "function"
+
+// reassigning doesn't help:
+f = 1;
+delete f; // false
+f; // 1
+```
+**显式属性**
+显式设置的属性可以正常删除。
+```javascript
+// explicitly set property:
+var obj = {x: 1};
+obj.y = 2;
+delete obj.x; // true
+delete obj.y; // true
+obj.x; // undefined
+obj.y; // undefined
+```
+在上面的例子，`obj.x` 和 `obj.y`可以删除对象。因为他们没有`DontDelete`属性。这就是为什么下面的例子也行。
+```javascript
+// this works fine, except for IE:
+var GLOBAL_OBJECT = this;
+GLOBAL_OBJECT.a = 1;
+a === GLOBAL_OBJECT.a; // true - just a global var
+delete GLOBAL_OBJECT.a; // true
+GLOBAL_OBJECT.a; // undefined
+```
+在这里，我们用诡计来删除这在这里指的是全局对象，我们显式声明变量的性质允许我们删除它。
+
+IE（至少6-8）有一些错误，所以上面的代码不工作。
+
+**函数的参数和内置插件**
+函数正常的参数，参数对象和内置的属性也有DontDelete集。
+```javascript
+// function arguments and properties:
+(function (x) {
+
+  delete arguments; // false
+  typeof arguments; // "object"
+
+  delete x; // false
+  x; // 1
+
+  function f(){}
+  delete f.length; // false
+  typeof f.length; // "number"
+
+})(1);
+```
+**宿主对象**
+
+删除操作的行为是不可预知的托管对象。由于规范，宿主对象可以实现任何一种行为。
+
+**结论**
+
+`delete`删除操作符通常会带来意想不到的行为，只能被安全用于删除标准对象的显式设置。
+
+
+# 其他
+
+## `setTimeout` 和 `setInterval`
 
 由于 JavaScript 是异步的，可以使用 `setTimeout` 和 `setInterval` 来计划执行函数。
 
