@@ -7,31 +7,31 @@ JavaScriptGarden
 
 - 简介
 - 对象
-	- 对象使用和属性
-	- 原型
-	- `hasOwnProperty`函数
-	- `for in `循环
+    - 对象使用和属性
+    - 原型
+    - `hasOwnProperty`函数
+    - `for in `循环
 - 函数
-	- 函数的声明与表达式
-	- `this`的工作原理
-	- 闭包和引用
-	- `arguments` 对象
-	- 构造函数
-	- 作用域与命名空间
+    - 函数的声明与表达式
+    - `this`的工作原理
+    - 闭包和引用
+    - `arguments` 对象
+    - 构造函数
+    - 作用域与命名空间
 - 数组
-	- 数组遍历与属性
-	- Array 构造函数
+    - 数组遍历与属性
+    - Array 构造函数
 - 类型
-	- 相等与比较
-	- `typeof` 操作符
-	- 类型转换
+    - 相等与比较
+    - `typeof` 操作符
+    - 类型转换
 - 核心
-	- 为什么不用`eval`
-	- `undefined`和`null`
-	- 自动分号插入
-	- delete操作符
+    - 为什么不用`eval`
+    - `undefined`和`null`
+    - 自动分号插入
+    - delete操作符
 - 其他
-	- `setTimeout` 和 `setInterval`
+    - `setTimeout` 和 `setInterval`
 
 <!-- /MarkdownTOC -->
 
@@ -491,7 +491,7 @@ for(var i = 0; i < 10; i++) {
 
 **避免引用错误**
 
-为了正确的获得循环序号，最好使用 匿名包裹器（译者注：自执行匿名函数）。
+为了正确的获得循环序号，最好使用 匿名包裹器。
 
 ```javascript
 for(var i = 0; i < 10; i++) {
@@ -563,12 +563,6 @@ Foo.method = function() {
     Function.call.apply(Foo.prototype.method, arguments);
 };
 
->译者注：上面的 Foo.method 函数和下面代码的效果是一样的:
-
-Foo.method = function() {
-    var args = Array.prototype.slice.call(arguments);
-    Foo.prototype.method.apply(args[0], args.slice(1));
-};
 ```
 **自动更新**
 
@@ -700,7 +694,7 @@ Bar();
 
 在上面的例子中，使用或者不使用 new 关键字没有功能性的区别。
 
-译者注：上面两种方式创建的对象不能访问 Bar 原型链上的属性，如下所示：
+注：上面两种方式创建的对象不能访问 Bar 原型链上的属性，如下所示：
 ```javascript
 var bar1 = new Bar();
 typeof(bar1.method); // "function"
