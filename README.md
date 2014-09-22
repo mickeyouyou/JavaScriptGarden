@@ -891,9 +891,6 @@ if (!SomeImportantThing) {
 }
 ```
 
->译者注：在 Nettuts+ 网站有一篇介绍 hoisting 的文章，其中的代码很有启发性。
-
-
 ```javascript
 // 译者注：来自 Nettuts+ 的一段代码，生动的阐述了 JavaScript 中变量声明提升规则
 var myvar = 'my value';  
